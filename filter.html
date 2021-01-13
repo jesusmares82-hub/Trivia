@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Quick Quiz</title>
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="home" class="flex-center flex-column">
+        <h1>API Trivia Config</h1>
+
+        <div class="form-group">
+          <label for="total-questions">Number of questions</label>
+
+          <select class="form-control" id="total-questions">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="50">50</option>
+          </select>
+        </div>
+        <div class="form-group mt-5">
+          <label for="select-category">Category</label>
+
+          <select class="form-control" id="select-category"></select>
+        </div>
+        <div class="form-group mt-5">
+          <label for="select-difficulty">Difficulty</label>
+          <select class="form-control" id="select-difficulty">
+            <option value="easy">Easy</option>
+            <option value="mediun">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+        <div class="form-group mt-5">
+          <label for="select-type">Type</label>
+          <select class="form-control" id="select-type">
+            <option value="multiple">Multiple</option>
+            <option value="boolean">True or False</option>
+          </select>
+        </div>
+
+        <a onclick="saveFilter()" class="btn mt-5" href="/game.html">Play</a>
+        <a class="btn" href="/highscores.html">High Scores</a>
+      </div>
+    </div>
+    <script src="filter.js"></script>
+  </body>
+</html>
