@@ -156,15 +156,3 @@ incrementScore = (num) => {
   score += num;
   scoreText.innerText = score;
 };
-
-function radioSelect() {
-  alert("entre ");
-  const resp = document.getElementById("radio");
-  console.log(resp);
-  resp.forEach((row) => {
-    console.log(row.checked);
-    if (row.checked) {
-      alert("radio button checkd " + row);
-    }
-  });
-}
