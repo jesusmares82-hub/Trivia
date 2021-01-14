@@ -107,16 +107,12 @@ getNewQuestion = () => {
       document.getElementById("answerT").style.display = "none";
       document.getElementById("answerTF").style.display = "none";
       const number = choice.dataset["number"];
-
       choice.innerHTML = `${currentQuestion["choice" + number]}`;
-
-      //choice.innerText = currentQuestion["choice" + number];
     } else {
       document.getElementById("answerT").style.display = "block";
       document.getElementById("answerTF").style.display = "block";
       const number = choice.dataset["number"];
       choice.innerHTML = `${currentQuestion["choice" + number]}`;
-      //choice.innerText = currentQuestion["choice" + number];
     }
   });
 
@@ -131,8 +127,6 @@ choices.forEach((choice) => {
     acceptingAnswers = false;
     const selectedChoice = e.target;
     const selectedAnswer = selectedChoice.dataset["number"];
-    console.log(selectedAnswer);
-
     const classToApply =
       selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
 
