@@ -1,5 +1,5 @@
 const question = document.getElementById("question");
-const choices = Array.from(document.getElementsByClassName("choice-text"));
+const choices = Array.from(document.getElementsByClassName("choice-input"));
 const progressText = document.getElementById("progressText");
 const scoreText = document.getElementById("score");
 const progressBarFull = document.getElementById("progressBarFull");
@@ -112,8 +112,8 @@ getNewQuestion = () => {
 
       //choice.innerText = currentQuestion["choice" + number];
     } else {
-      document.getElementById("answerT");
-      document.getElementById("answerTF");
+      document.getElementById("answerT").style.display = "block";
+      document.getElementById("answerTF").style.display = "block";
       const number = choice.dataset["number"];
       choice.innerHTML = `${currentQuestion["choice" + number]}`;
       //choice.innerText = currentQuestion["choice" + number];
@@ -131,6 +131,7 @@ choices.forEach((choice) => {
     acceptingAnswers = false;
     const selectedChoice = e.target;
     const selectedAnswer = selectedChoice.dataset["number"];
+    console.log(selectedAnswer);
 
     const classToApply =
       selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
@@ -143,6 +144,9 @@ choices.forEach((choice) => {
 
     setTimeout(() => {
       selectedChoice.parentElement.classList.remove(classToApply);
+      choices.forEach((choice) => {
+        choice.checked = false;
+      });
       getNewQuestion();
     }, 1000);
   });
@@ -152,3 +156,15 @@ incrementScore = (num) => {
   score += num;
   scoreText.innerText = score;
 };
+
+function radioSelect() {
+  alert("entre ");
+  const resp = document.getElementById("radio");
+  console.log(resp);
+  resp.forEach((row) => {
+    console.log(row.checked);
+    if (row.checked) {
+      alert("radio button checkd " + row);
+    }
+  });
+}
