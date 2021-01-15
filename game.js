@@ -6,7 +6,9 @@ const progressBarFull = document.getElementById("progressBarFull");
 const loader = document.getElementById("loader");
 const game = document.getElementById("game");
 const a = document.getElementById("answerT");
-
+//CONSTANTS
+const multipleAnswers = 4;
+const booleanAnswers = 2;
 const amount = localStorage.getItem("numberQuestions");
 const category = localStorage.getItem("selectCategory");
 const difficulty = localStorage.getItem("selectDifficulty");
@@ -16,7 +18,7 @@ let currentQuestion = {};
 let acceptingAnswers = false;
 let score = 0;
 let questionCounter = 0;
-let availableQuesions = [];
+let availableQuestions = [];
 
 let questions = [];
 
@@ -40,7 +42,8 @@ fetch(
         };
         if (type == "multiple") {
           const answerChoices = [...loadedQuestion.incorrect_answers];
-          formattedQuestion.answer = Math.floor(Math.random() * 4) + 1;
+          formattedQuestion.answer =
+            Math.floor(Math.random() * multipleAnswers) + 1;
           answerChoices.splice(
             formattedQuestion.answer - 1,
             0,
@@ -52,7 +55,8 @@ fetch(
           });
         } else if (type == "boolean") {
           const answerChoices = [...loadedQuestion.incorrect_answers];
-          formattedQuestion.answer = Math.floor(Math.random() * 2) + 1;
+          formattedQuestion.answer =
+            Math.floor(Math.random() * booleanAnswers) + 1;
           answerChoices.splice(
             formattedQuestion.answer - 1,
             0,
@@ -81,14 +85,14 @@ const MAX_QUESTIONS = amount;
 startGame = () => {
   questionCounter = 0;
   score = 0;
-  availableQuesions = [...questions];
+  availableQuestions = [...questions];
   getNewQuestion();
   game.classList.remove("hidden");
   loader.classList.add("hidden");
 };
 
 getNewQuestion = () => {
-  if (availableQuesions.length === 0 || questionCounter >= MAX_QUESTIONS) {
+  if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
     localStorage.setItem("mostRecentScore", score);
     //go to the end page
     return window.location.assign("/end.html");
@@ -98,8 +102,8 @@ getNewQuestion = () => {
   //Update the progress bar
   progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`;
 
-  const questionIndex = Math.floor(Math.random() * availableQuesions.length);
-  currentQuestion = availableQuesions[questionIndex];
+  const questionIndex = Math.floor(Math.random() * availableQuestions.length);
+  currentQuestion = availableQuestions[questionIndex];
   question.innerHTML = currentQuestion.question;
 
   choices.forEach((choice) => {
@@ -116,7 +120,7 @@ getNewQuestion = () => {
     }
   });
 
-  availableQuesions.splice(questionIndex, 1);
+  availableQuestions.splice(questionIndex, 1);
   acceptingAnswers = true;
 };
 
