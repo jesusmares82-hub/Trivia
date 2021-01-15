@@ -5,10 +5,11 @@ const scoreText = document.getElementById("score");
 const progressBarFull = document.getElementById("progressBarFull");
 const loader = document.getElementById("loader");
 const game = document.getElementById("game");
-const a = document.getElementById("answerT");
+
 //CONSTANTS
 const multipleAnswers = 4;
 const booleanAnswers = 2;
+
 const amount = localStorage.getItem("numberQuestions");
 const category = localStorage.getItem("selectCategory");
 const difficulty = localStorage.getItem("selectDifficulty");
@@ -108,13 +109,13 @@ getNewQuestion = () => {
 
   choices.forEach((choice) => {
     if (type == "boolean") {
-      document.getElementById("answerT").style.display = "none";
-      document.getElementById("answerTF").style.display = "none";
+      document.getElementById("answerHidde").style.display = "none";
+      document.getElementById("answerHidde2").style.display = "none";
       const number = choice.dataset["number"];
       choice.innerHTML = `${currentQuestion["choice" + number]}`;
     } else {
-      document.getElementById("answerT").style.display = "block";
-      document.getElementById("answerTF").style.display = "block";
+      document.getElementById("answerHidde").style.display = "block";
+      document.getElementById("answerHidde2").style.display = "block";
       const number = choice.dataset["number"];
       choice.innerHTML = `${currentQuestion["choice" + number]}`;
     }
